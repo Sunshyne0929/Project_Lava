@@ -24,31 +24,4 @@ class DiverModel extends Model {
 
         return $this->db->query($sql, $params);
     }
-
-    public function generatePDF($data) {
-        $pdf = new TCPDF();
-        $pdf->SetCreator('Diver Registration System');
-        $pdf->SetTitle('Diver Registration Certificate');
-        $pdf->AddPage();
-        $pdf->SetFont('helvetica', '', 12);
-
-        // Add a title
-        $pdf->Cell(0, 10, 'Diver Registration Certificate', 0, 1, 'C');
-        $pdf->Ln(10);
-
-        // Add content
-        $content = '';
-        foreach ($data as $key => $value) {
-            $key = ucfirst(str_replace('_', ' ', $key));
-            $content .= "<strong>{$key}:</strong> {$value}<br>";
-        }
-
-        $pdf->writeHTML($content, true, false, true, false, '');
-
-        // Save PDF file to a specific directory
-        $pdfPath = 'uploads/certificates/' . $data['last_name'] . '_' . $data['first_name'] . '.pdf';
-        $pdf->Output($pdfPath, 'F');
-
-        return $pdfPath;
-    }
 }

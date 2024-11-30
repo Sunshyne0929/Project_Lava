@@ -16,6 +16,8 @@ $router->get('/', 'Auth::login');
 $router->get('/home', 'Home::index');
 $router->get('/register_diver', 'Home::register');
 $router->get('/pdf_success', 'Home::pdf_success');
+$router->get('/download_pdf', 'Home::download_pdf');
+
 
 
 // Auth routes
